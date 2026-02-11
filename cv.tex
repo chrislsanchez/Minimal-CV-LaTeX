@@ -1,0 +1,333 @@
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+%	The MIT License (MIT)
+%
+%	Copyright (c) 2023
+%
+%	Description: Professional German CV (Lebenslauf) for Senior Software Engineers
+%-----------------------------------------------------------------------------------------------------------------------------------------------%
+
+\documentclass[a4paper,10pt]{article}
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english, ngerman]{babel} % Load both languages (German is default)
+\usepackage[default]{raleway} % Modern sans-serif font
+\usepackage[margin=1.2cm, top=1.2cm, bottom=1.2cm]{geometry} % Maximize space
+\usepackage{xcolor}
+\usepackage{fontawesome5} % Icons
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref} % hidelinks removes the ugly boxes around links
+\usepackage{parskip}
+
+%----------------------------------------------------------------------------------------
+%	CONFIGURATION (USER SETTINGS)
+%----------------------------------------------------------------------------------------
+
+% --- 1. COLOR SETTINGS ---
+% Define "German Blue" (Prussian Blue) - Professional & Trustworthy
+\definecolor{GermanBlue}{RGB}{0, 49, 83} 
+\definecolor{DarkGrey}{RGB}{50, 50, 50}
+\definecolor{LightGrey}{RGB}{240, 240, 240}
+
+% TOGGLE COLOR HERE: Change 'GermanBlue' to 'black' for a monochrome version
+\colorlet{PrimaryColor}{GermanBlue} 
+\colorlet{BodyText}{DarkGrey}
+
+% --- 2. PHOTO TOGGLE ---
+% Set to 'true' to show photo, 'false' to hide it
+\newif\ifshowphoto
+\showphototrue 
+
+% --- 3. LANGUAGE CONFIGURATION ---
+\newif\ifenglish
+
+% =======================================================================
+% LANGUAGE TOGGLE
+% Change to \englishtrue for English, or \englishfalse for German
+% =======================================================================
+\englishfalse 
+% =======================================================================
+
+\ifenglish
+    % --- ENGLISH DEFINITIONS ---
+    \selectlanguage{english}
+    \newcommand{\cvTitle}{Curriculum Vitae}
+    \newcommand{\skillsHeader}{Skills}
+    \newcommand{\languagesHeader}{Languages}
+    \newcommand{\experienceHeader}{Experience}
+    \newcommand{\educationHeader}{Education}
+    \newcommand{\certHeader}{Certifications}
+    \newcommand{\attachmentsFooter}{Attachments: References, Certificates, Publications}
+    \newcommand{\coverLetterDate}{Berlin, \today} % e.g. Berlin, October 25, 2023
+    \newcommand{\coverLetterSubject}{Application as Senior Software Engineer}
+\else
+    % --- GERMAN DEFINITIONS ---
+    \selectlanguage{ngerman}
+    \newcommand{\cvTitle}{Lebenslauf}
+    \newcommand{\skillsHeader}{Kenntnisse}
+    \newcommand{\languagesHeader}{Sprachen}
+    \newcommand{\experienceHeader}{Berufserfahrung}
+    \newcommand{\educationHeader}{Ausbildung}
+    \newcommand{\certHeader}{Zertifikate}
+    \newcommand{\attachmentsFooter}{Anlagen: Zeugnisse, Zertifikate, Publikationsliste}
+    \newcommand{\coverLetterDate}{Berlin, den \today} % e.g. Berlin, den 25. Oktober 2023
+    \newcommand{\coverLetterSubject}{Bewerbung als Senior Software Engineer}
+\fi
+
+%----------------------------------------------------------------------------------------
+%	CUSTOM COMMANDS
+%----------------------------------------------------------------------------------------
+
+% Remove page numbers
+\pagestyle{empty}
+
+% Section Formatting
+\titleformat{\section}
+  {\Large\bfseries\color{PrimaryColor}\uppercase} 
+  {} 
+  {0em} 
+  {} 
+  [\titlerule] 
+
+\titlespacing*{\section}{0pt}{10pt}{6pt}
+
+% Custom command for Work Experience
+\newcommand{\workexp}[5]{
+    \noindent
+    \textbf{#2} \hfill \textcolor{PrimaryColor}{\textbf{#1}} \\
+    \textit{#3} $\cdot$ \footnotesize{#4} \normalsize \\
+    \vspace{-4pt}
+    {#5}
+    \vspace{6pt}
+}
+
+% Custom command for Education
+\newcommand{\education}[4]{
+    \noindent
+    \textbf{#2} \hfill \textcolor{PrimaryColor}{\textbf{#1}} \\
+    \textit{#3} \\
+    \footnotesize{#4} \normalsize
+    \vspace{6pt}
+}
+
+% Custom command for Skill Tags
+\newcommand{\skilltag}[1]{%
+    \tikz[baseline]\node[anchor=base, draw=BodyText!30, fill=LightGrey, rounded corners=2pt, inner sep=2.5pt, text=BodyText, font=\footnotesize]{#1};%
+}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT CONTENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	HEADER
+%----------------------------------------------------------------------------------------
+\begin{minipage}[c]{\ifshowphoto 0.75\textwidth \else 1.0\textwidth \fi}
+    % Name with Title (Standard in Germany for PhDs)
+    {\fontsize{28}{32}\selectfont \textbf{\color{PrimaryColor} DR. MAX MUSTERMANN}} \\[0.2cm]
+    {\Large Senior Software Engineer (Java / Cloud Architecture)} \\[0.3cm]
+    
+    % Contact Info
+    \textcolor{BodyText}{
+        \faMapMarker* Berlin, Deutschland \quad
+        \faPhone \ +49 170 1234567 \quad
+        \faEnvelope \href{mailto:max@mustermann.de}{ max@mustermann.de}
+    } \\[0.1cm]
+    \textcolor{BodyText}{
+        \faLinkedin \ \href{https://linkedin.com/in/maxmuster}{linkedin.com/in/maxmuster} \quad
+        \faGithub \ \href{https://github.com/maxmuster}{github.com/maxmuster} \quad
+        \faGlobe \ \href{https://maxmustermann.de}{maxmustermann.de}
+    }
+\end{minipage}
+\ifshowphoto
+\begin{minipage}[c]{0.23\textwidth}
+    \raggedleft
+    \begin{tikzpicture}
+        \clip (0,0) circle (1.6cm);
+        \node at (0,0) {\includegraphics[width=3.2cm]{profile.jpg}}; 
+        % Placeholder if image is missing:
+        % \node[fill=LightGrey, minimum size=3.2cm] at (0,0) {\textcolor{BodyText}{Photo}};
+    \end{tikzpicture}
+\end{minipage}
+\fi
+
+\vspace{0.4cm}
+
+%----------------------------------------------------------------------------------------
+%	CV BODY - TWO COLUMN LAYOUT
+%----------------------------------------------------------------------------------------
+
+% LEFT COLUMN (Skills, Contact, Languages) - 30% Width
+\begin{minipage}[t]{0.30\textwidth}
+    
+    % --- SKILLS ---
+    \section*{\skillsHeader}
+    
+    \textbf{Backend Development} \\
+    \skilltag{Java 17+} \skilltag{Spring Boot} \\
+    \skilltag{Kotlin} \skilltag{Node.js}
+    
+    \vspace{6pt}
+    \textbf{Cloud \& DevOps} \\
+    \skilltag{AWS} \skilltag{Docker} \\
+    \skilltag{Kubernetes} \skilltag{Terraform} \\
+    \skilltag{CI/CD (GitLab)}
+    
+    \vspace{6pt}
+    \textbf{Database} \\
+    \skilltag{PostgreSQL} \skilltag{MongoDB} \\
+    \skilltag{Redis} \skilltag{Elasticsearch}
+    
+    \vspace{6pt}
+    \textbf{Architecture} \\
+    \skilltag{Microservices} \skilltag{REST API} \\
+    \skilltag{Event-Driven (Kafka)}
+    
+    \vspace{12pt}
+    
+    % --- LANGUAGES ---
+    \section*{\languagesHeader}
+    \textbf{Deutsch} \hfill Muttersprache \\
+    \textbf{Englisch} \hfill Verhandlungssicher \\
+    \textbf{Spanisch} \hfill Grundkenntnisse
+    
+    \vspace{12pt}
+    
+    % --- CERTIFICATIONS ---
+    \section*{\certHeader}
+    \begin{itemize}[leftmargin=*, noitemsep, label=\textcolor{PrimaryColor}{\small\faCertificate}]
+        \item AWS Certified Solutions Architect
+        \item Oracle Certified Professional
+        \item Certified Scrum Master (CSM)
+    \end{itemize}
+
+\end{minipage}
+\hfill \vrule width 0.5pt \hfill % Vertical Divider
+% RIGHT COLUMN (Experience, Education) - 66% Width
+\begin{minipage}[t]{0.66\textwidth}
+
+    % --- EXPERIENCE ---
+    % NOTE: You must manually translate the bullet points below if switching to English
+    \section*{\experienceHeader}
+    
+    \workexp{01/2019 -- Heute}
+        {Senior Software Engineer}
+        {TechSolutions GmbH}
+        {Berlin}
+        {\begin{itemize}[leftmargin=*, nosep, label=\textcolor{PrimaryColor}{\small\faAngleRight}]
+            \item Leitung eines 5-köpfigen Backend-Teams bei der Migration eines Monolithen zu einer \textbf{Microservices-Architektur} (Spring Boot, Kubernetes).
+            \item Reduzierung der Deployment-Zeit um 40\% durch Einführung einer modernen CI/CD Pipeline mit GitLab CI.
+            \item Design und Implementierung hochskalierbarer REST-APIs für über 100.000 tägliche Nutzer.
+        \end{itemize}}
+        
+    \workexp{06/2015 -- 12/2018}
+        {Software Developer}
+        {Innovative Systems AG}
+        {München}
+        {\begin{itemize}[leftmargin=*, nosep, label=\textcolor{PrimaryColor}{\small\faAngleRight}]
+            \item Entwicklung von Backend-Services im Finanzsektor unter Einhaltung strenger Sicherheitsstandards.
+            \item Optimierung von SQL-Datenbankabfragen (PostgreSQL), was die Antwortzeiten um 30\% verbesserte.
+        \end{itemize}}
+
+    \workexp{10/2013 -- 05/2015}
+        {Junior Java Developer}
+        {StartUp Creative}
+        {Hamburg}
+        {\begin{itemize}[leftmargin=*, nosep, label=\textcolor{PrimaryColor}{\small\faAngleRight}]
+            \item Fullstack-Entwicklung (Java EE, JSF) für interne Verwaltungstools.
+        \end{itemize}}
+
+    % --- EDUCATION (PhD, Master, Bachelor) ---
+    \section*{\educationHeader}
+    
+    \education{10/2015 -- 09/2018}
+        {Dr. rer. nat. Informatik (PhD)}
+        {Technische Universität Berlin}
+        {Thema: \textit{Distributed Systems Scaling}. Note: magna cum laude}
+        
+    \education{10/2013 -- 09/2015}
+        {M.Sc. Software Engineering}
+        {RWTH Aachen University}
+        {Schwerpunkt: Cloud Computing. Abschlussnote: 1.3}
+
+    \education{10/2010 -- 09/2013}
+        {B.Sc. Angewandte Informatik}
+        {Karlsruher Institut für Technologie (KIT)}
+        {Abschlussnote: 1.7}
+        
+\end{minipage}
+
+% --- FOOTER (Attachments) ---
+\vfill
+\begin{center}
+    \textcolor{gray}{\footnotesize \attachmentsFooter}
+\end{center}
+
+\clearpage
+
+%----------------------------------------------------------------------------------------
+%	PAGE 2: COVER LETTER (ANSCHREIBEN)
+%----------------------------------------------------------------------------------------
+
+% Header for Cover Letter (Same style as CV)
+\begin{minipage}[c]{1.0\textwidth}
+    {\fontsize{24}{28}\selectfont \textbf{\color{PrimaryColor} DR. MAX MUSTERMANN}} \\
+    \textcolor{BodyText}{
+        Musterstraße 1, 10115 Berlin $\cdot$ +49 170 1234567 \\
+        max@mustermann.de $\cdot$ github.com/maxmuster
+    }
+    \vspace{0.2cm}
+    \hrule
+\end{minipage}
+
+\vspace{1.5cm}
+
+% Recipient Address Block (DIN 5008 Style)
+\begin{minipage}[t]{0.5\textwidth}
+    \textbf{Firmenname GmbH} \\
+    z. Hd. Frau Personalchefin \\
+    Firmenstraße 10 \\
+    20095 Hamburg
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.4\textwidth}
+    \raggedleft
+    \coverLetterDate
+\end{minipage}
+
+\vspace{1.5cm}
+
+% Subject Line
+\textbf{\large \coverLetterSubject} \\
+\textit{Referenznummer: 123-XYZ}
+
+\vspace{1cm}
+
+% Letter Body
+% NOTE: You must manually translate this text if switching to English
+Sehr geehrte Frau Personalchefin,
+
+mit großem Interesse habe ich Ihre Stellenausschreibung gelesen. Als erfahrener Software Engineer mit Promotion im Bereich verteilter Systeme bin ich davon überzeugt, Ihr Team bei der TechSolutions GmbH ideal ergänzen zu können.
+
+In meiner aktuellen Position leite ich die technische Neuausrichtung unserer Kernplattform hin zu einer Cloud-Native Architektur. Dabei konnte ich nicht nur meine technischen Fähigkeiten in Java und Kubernetes vertiefen, sondern auch Führungserfahrung sammeln. Besonders reizt mich an Ihrer ausgeschriebenen Stelle die Möglichkeit, an innovativen IoT-Lösungen zu arbeiten, da dies genau meinen Forschungsschwerpunkten entspricht.
+
+Meine Arbeitsweise zeichnet sich durch Clean Code Prinzipien, eine hohe Problemlösungskompetenz und eine agile Denkweise aus. Ich suche nach einer Herausforderung, bei der ich Verantwortung übernehmen und technologische Entscheidungen aktiv mitgestalten kann.
+
+Gerne stelle ich mich Ihnen in einem persönlichen Gespräch vor und freue mich auf Ihre Rückmeldung.
+
+\vspace{1cm}
+
+Mit freundlichen Grüßen,
+
+\vspace{1.5cm} % Space for signature
+
+\textbf{Dr. Max Mustermann}
+
+\end{document}

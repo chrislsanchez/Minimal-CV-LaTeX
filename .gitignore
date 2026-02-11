@@ -1,0 +1,44 @@
+# LaTeX intermediate files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.log
+*.lof
+*.lot
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.nav
+*.snm
+*.vrb
+
+# PDF output (optional: if you want to track your final CV, remove this)
+*.pdf
+
+# Backup files
+*~
+*.bak
+*.backup
+*.old
+
+# Editor-specific files
+# Vim
+*.swp
+*.swo
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# TeXShop (Mac)
+*.aux.lock
+
+# MacOS Finder files
+.DS_Store
+
+# Windows
+Thumbs.db
